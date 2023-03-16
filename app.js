@@ -6,13 +6,12 @@ const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sa
 const app = express();
 
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.get("/", function(req, res) {
 
     var today = new Date();
-    var currentDay = today.getDay();;
-    var dayName = nameOfDay(currentDay);
 
     var options = {
         weekday: "long",
@@ -20,21 +19,20 @@ app.get("/", function(req, res) {
         month: "long"
     };
 
-    var day = today.toLocaleDateString("en-US");
+    var day = today.toLocaleDateString("en-US", options);
 
     //szuka plku list.ejs w folderze views
     res.render("list", {
-        kindOfDay: dayName
+        kindOfDay: day
     });   
 
 });
 
-
-function nameOfDay(dayNumber) {
-    return weekday[dayNumber];
-}
-
-
+app.post("/", function(req, res) {
+    var num1 = req.body.txt1;
+    console.log(num1);
+    //res.send(num1);
+});
 
 app.listen(port, function() {
     console.log("Server started on port " + port);
