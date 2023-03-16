@@ -5,33 +5,41 @@ const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sa
 
 const app = express();
 
+let items = ["Buy Food", "Cook Food", "Eat Food"];  // declare item in global scope (moved from post method)
+
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.get("/", function(req, res) {
 
-    var today = new Date();
+    let today = new Date();
 
-    var options = {
+    let options = {
         weekday: "long",
         day: "numeric",
         month: "long"
     };
 
-    var day = today.toLocaleDateString("en-US", options);
+    let day = today.toLocaleDateString("en-US", options);
 
     //szuka plku list.ejs w folderze views
     res.render("list", {
-        kindOfDay: day
+        kindOfDay: day,
+        newListItems: items
     });   
 
 });
-
+ 
 app.post("/", function(req, res) {
-    var num1 = req.body.txt1;
-    console.log(num1);
+
+    var item = req.body.txt1;
+    items.push(item);
+    //console.log(num1);
     //res.send(num1);
+
+    res.redirect("/"); //redirect item to home route, which will render new item through res.render
+
 });
 
 app.listen(port, function() {
