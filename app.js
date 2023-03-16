@@ -10,29 +10,17 @@ app.set('view engine', 'ejs');
 
 app.get("/", function(req, res) {
 
-    //res.write("<p>Hello<br>");
-
     var today = new Date();
     var currentDay = today.getDay();;
-    //var day = "";
     var dayName = nameOfDay(currentDay);
 
-    //if (currentDay === 6 || currentDay === 0) {
+    var options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
+    };
 
-        //res.sendFile("<h1>Yay it's the weekend!</h1>");
-
-        //day = "Weekend"
-
-    //} else {
-
-        //res.write("<p>It is not the weekend.</p>");
-        //res.write("<h1>Boo! I have to work!</h1>");
-
-        //res.sendFile(__dirname + "/index.html");
-
-        //day = "Weekday";
-    
-    //}
+    var day = today.toLocaleDateString("en-US");
 
     //szuka plku list.ejs w folderze views
     res.render("list", {
