@@ -8,7 +8,9 @@ const app = express();
 let items = ["Buy Food", "Cook Food", "Eat Food"];  // declare item in global scope (moved from post method)
 
 app.set('view engine', 'ejs');
+
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static("public")); // specify location of static files
 
 
 app.get("/", function(req, res) {
