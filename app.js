@@ -57,7 +57,8 @@ app.get("/work", function(req, res) {
 });
 
 app.get("/about", function(req, res) {
-   res.sendFile(__dirname + "/about.html"); // sending single html file
+   //res.sendFile(__dirname + "/about.html"); // sending single html file
+   res.render("about"); // sending page without any params in ejs. about.ejs must be in views folder.
 });
 
 //app.post("/work", function(req,res) {
