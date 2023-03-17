@@ -57,7 +57,7 @@ app.get("/work", function(req, res) {
 });
 
 app.get("/about", function(req, res) {
-  return res.render("/about");
+   res.sendFile(__dirname + "/about.html"); // sending single html file
 });
 
 //app.post("/work", function(req,res) {
