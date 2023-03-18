@@ -7,8 +7,8 @@ const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sa
 
 const app = express();
 
-let items = ["Buy Food", "Cook Food", "Eat Food"];  // declare item in global scope (moved from post method)
-let workItems = [];
+const items = ["Buy Food", "Cook Food", "Eat Food"];  // declare item in global scope (moved from post method)
+const workItems = [];
 
 app.set('view engine', 'ejs');
 
@@ -18,7 +18,7 @@ app.use(express.static("public")); // specify location of static files
 
 app.get("/", function(req, res) {
 
-    let day = date(); // callling function bound to const date, and saving in day variable
+    let day = date.getDate(); // callling function bound to const date, and saving in day variable
 
     //szuka plku list.ejs w folderze views
     res.render("list", {
