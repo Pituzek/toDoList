@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
+
 const port = 3000;
 const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
@@ -16,15 +18,7 @@ app.use(express.static("public")); // specify location of static files
 
 app.get("/", function(req, res) {
 
-    let today = new Date();
-
-    let options = {
-        weekday: "long",
-        day: "numeric",
-        month: "long"
-    };
-
-    let day = today.toLocaleDateString("en-US", options);
+    let day = date(); // callling function bound to const date, and saving in day variable
 
     //szuka plku list.ejs w folderze views
     res.render("list", {
@@ -33,7 +27,7 @@ app.get("/", function(req, res) {
     });   
 
 });
- 
+
 app.post("/", function(req, res) {
 
     //console.log(req.body);
